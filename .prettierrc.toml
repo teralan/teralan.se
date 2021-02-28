@@ -1,0 +1,11 @@
+tabWidth = 2
+useTabs = false
+semi = false
+singleQuote = false
+trailingComma = "all"
+printWidth = 90
+svelteSortOrder = "options-scripts-markup-styles"
+svelteStrictMode = false
+svelteBracketNewLine = true
+svelteAllowShorthand = true
+svelteIndentScriptAndStyle = false

@@ -1,0 +1,23 @@
+# libs/build
+node_modules
+/[Oo]ut/
+/[Bb]in/
+/[Dd]ist/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/.svelte
+
+# editor
+.vscode
+.idea
+.vs
+
+# configs
+.env.*
+.env
+!.env.example
+.npmrc
