@@ -31,14 +31,14 @@ export let items: {
   position: absolute;
   width: 300px;
   @apply shadow-lg border-blue-600 bg-blue-900
-            border rounded-xl lowercase;
+         border rounded-xl lowercase cursor-default;
 }
 ul {
   @apply flex flex-col space-y-2 text-base;
   @apply text-blue-200;
 }
 ul li {
-  @apply transition-colors duration-150;
+  @apply transition-colors duration-150 cursor-pointer;
 }
 ul li:hover {
   @apply text-blue-400;

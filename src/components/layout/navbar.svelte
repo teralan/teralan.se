@@ -57,6 +57,7 @@ function onWindowClick(e: MouseEvent) {
         </li>
         <li class="relative">
           <span
+            class="cursor-pointer"
             on:click={(e) => {
               e.preventDefault()
               e.stopPropagation()
@@ -128,7 +129,7 @@ nav {
 }
 
 .desktop ul.list li {
-  @apply text-xl text-white cursor-pointer;
+  @apply text-xl text-white;
 }
 
 .desktop .join_button {
