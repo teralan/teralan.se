@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "not-svelte-kit dev",
     "build": "not-svelte-kit build && not-svelte-kit adapt",
-    "start": "not-svelte-kit start"
+    "start": "not-svelte-kit start",
+    "build:linux": "svelte-kit build && svelte-kit adapt",
+    "start:linux": "svelte-kit start"
   },
   "devDependencies": {
     "@snowpack/plugin-typescript": "^1.2.1",
