@@ -10,7 +10,7 @@ import { memberPage } from "../stores/site"
 </svelte:head>
 
 <Page title={$memberPage.intro.title} description="" divider="(＾Ｕ＾)ノ">
-  <span class="text-2xl text-gray-300 text-center">
+  <span class="text-2xl text-red-600 text-center">
     {$memberPage.intro.paragraph}
   </span>
   <a href="/" class="my-8">

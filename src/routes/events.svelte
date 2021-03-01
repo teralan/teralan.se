@@ -11,7 +11,7 @@ import { eventsPage } from "../stores/site"
 <Page
   title={$eventsPage.intro.title}
   description={$eventsPage.intro.paragraph}
-  divider={"ლ(╹◡╹ლ)"}
+  divider={"🎮(╹◡╹👍)"}
 >
   <div class="events">
     <span class="empty">
