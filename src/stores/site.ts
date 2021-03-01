@@ -1,6 +1,6 @@
 import { writable } from "svelte/store"
 
-export const homePage = writable<HomePage>({
+export const home = writable<HomePage>({
   intro: {
     title: "title",
     paragraph: "paragraph",
@@ -11,7 +11,7 @@ export const homePage = writable<HomePage>({
   background: "background",
 })
 
-export const eventsPage = writable<EventsPage>({
+export const events = writable<EventsPage>({
   intro: {
     title: "title",
     paragraph: "paragraph",
@@ -22,7 +22,7 @@ export const eventsPage = writable<EventsPage>({
   },
 })
 
-export const aboutUsPage = writable<AboutUsPage>({
+export const aboutus = writable<AboutUsPage>({
   intro: {
     title: "title",
     paragraph: "paragraph",
@@ -30,11 +30,11 @@ export const aboutUsPage = writable<AboutUsPage>({
   boardMembers: [],
 })
 
-export const memberPage = writable<memberPage>({
+export const member = writable<MemberPage>({
   intro: {
     title: "title",
     paragraph: "paragraph",
   },
 })
 
-export const contactLinks = writable<ContactLink[]>([])
+export const contacts = writable<ContactLink[]>([])

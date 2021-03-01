@@ -13,6 +13,9 @@
     "build:linux": "svelte-kit build && svelte-kit adapt",
     "start:linux": "svelte-kit start"
   },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
   "devDependencies": {
     "@snowpack/plugin-typescript": "^1.2.1",
     "@sveltejs/adapter-node": "next",
@@ -20,6 +23,7 @@
     "@sveltejs/kit": "next",
     "@sveltejs/snowpack-config": "next",
     "@tsconfig/svelte": "^1.0.10",
+    "@types/node": "^14.14.31",
     "autoprefixer": "^10.2.4",
     "not-svelte-kit": "^0.0.7-next.34",
     "prettier": "^2.2.1",

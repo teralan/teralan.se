@@ -28,7 +28,7 @@ export let intro: boolean = true
 <style scoped>
 .page {
   @apply flex flex-col items-center justify-center;
-  @apply mt-8 md:mt-32 px-4 mx-auto;
+  @apply mt-4 md:mt-16 px-4 mx-auto;
   @apply text-white;
 }
 .page .intro {
@@ -40,7 +40,7 @@ export let intro: boolean = true
   @apply font-bold;
 }
 .page .intro p {
-  @apply max-w-xl;
+  @apply max-w-lg;
   @apply text-base md:text-lg;
   @apply text-gray-400;
 }

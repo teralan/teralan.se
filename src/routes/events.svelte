@@ -1,22 +1,21 @@
 <script>
+import { events } from "$stores/site"
 import Background from "$components/background.svelte"
 import Page from "$components/layout/page.svelte"
-import { eventsPage } from "../stores/site"
 </script>
 
 <svelte:head>
-  <title>{`${$eventsPage.intro.title} - 🚩`}</title>
+  <title>{`${$events.intro.title} - 🚩`}</title>
 </svelte:head>
 
 <Page
-  title={$eventsPage.intro.title}
-  description={$eventsPage.intro.paragraph}
-  divider={"🎮(╹◡╹👍)"}
->
+  title={$events.intro.title}
+  description={$events.intro.paragraph}
+  divider={"🎮(╹◡╹👍)"}>
   <div class="events">
     <span class="empty">
-      <span class="title">{$eventsPage.emptyFallback.title}</span>
-      <p>{$eventsPage.emptyFallback.paragraph}</p>
+      <span class="title">{$events.emptyFallback.title}</span>
+      <p>{$events.emptyFallback.paragraph}</p>
     </span>
   </div>
 </Page>

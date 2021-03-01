@@ -1,5 +1,9 @@
 // <reference types="@sveltejs/kit" />
 
+declare module "*.svelte" {
+  export { SvelteComponent as default } from "svelte"
+}
+
 declare type RouteLoad = (params: {
   fetch: (input: RequestInfo, init?: RequestInit) => Promise<Response>
   session: Record<string, any>
@@ -31,7 +35,7 @@ declare type RouteLoad = (params: {
   props?: Record<string, any>
 } | void>
 
-declare type ServerRoute = (
+declare type ServerRoute<T extends Record<string, any> = Record<string, any>> = (
   req: {
     host: string
     path: string
@@ -44,12 +48,8 @@ declare type ServerRoute = (
 ) => Promise<{
   status?: number
   headers?: Record<string, string>
-  body?: Record<string, any> | Buffer | DataView
+  body?: T | Buffer | DataView
 }>
-
-declare module "*.svelte" {
-  export { SvelteComponent as default } from "svelte"
-}
 
 declare module "*.gif" {
   const value: string

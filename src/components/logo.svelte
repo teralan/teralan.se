@@ -10,10 +10,12 @@ export let image: string = ""
 .logo {
   width: 100%;
   @apply inline-flex flex-col justify-center items-center;
-  @apply border-none;
+  @apply border-none border-0;
 }
-.logo img {
+
+:global(img) {
   width: 100%;
+  @apply border-none border-0;
 }
 .logo span {
   @apply text-4xl tracking-wide;

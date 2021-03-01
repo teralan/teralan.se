@@ -1,17 +1,17 @@
 <script>
+import { member } from "$stores/site"
 import Page from "$components/layout/page.svelte"
 import Background from "$components/background.svelte"
 import Button from "$components/button.svelte"
-import { memberPage } from "../stores/site"
 </script>
 
 <svelte:head>
-  <title>{`${$memberPage.intro.title} - 📋`}</title>
+  <title>{`${$member.intro.title} - 📋`}</title>
 </svelte:head>
 
-<Page title={$memberPage.intro.title} description="" divider="(＾Ｕ＾)ノ">
+<Page title={$member.intro.title} description="" divider="(＾Ｕ＾)ノ">
   <span class="text-2xl text-red-600 text-center">
-    {$memberPage.intro.paragraph}
+    {$member.intro.paragraph}
   </span>
   <a href="/" class="my-8">
     <Button color="blue">

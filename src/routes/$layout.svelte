@@ -1,88 +1,25 @@
-<script context="module">
-import { dev } from "$app/env"
-export const load: RouteLoad = async ({ fetch, session }) => {
-  //@todo move to .env config
-  const apiUrl = "http://localhost:1337"
-
-  //@todo move to .env config
-  const assetUrl = "http://localhost:1337"
-
-  const res = await fetch(`${apiUrl}/teralan-se`)
-  const data = await res.json()
-
-  const socials = await fetch(`${apiUrl}/socials`)
-  const contacts = (await socials.json()).Contacts
-
-  return {
-    props: {
-      assetUrl,
-      contacts,
-      data,
-    },
-  }
+<script context="module" lang="ts">
+import { home, events, aboutus, member, contacts } from "$stores/site"
+export const load = async ({ fetch }) => {
+  const req = await fetch(`/api/site-content`)
+  const content = (await req.json()) as SiteContent
+  home.set(content.homePage)
+  events.set(content.eventsPage)
+  aboutus.set(content.aboutUsPage)
+  member.set(content.memberPage)
+  contacts.set(content.contactLinks)
+  return {}
 }
 </script>
 
 <script>
-import Header from "$components/layout/header.svelte"
-import PageTransition from "$components/layout/page-transition.svelte"
 import { fade } from "svelte/transition"
 import { page } from "$app/stores"
+import { home as data } from "$stores/site"
 
-import {
-  homePage,
-  eventsPage,
-  aboutUsPage,
-  memberPage,
-  contactLinks,
-} from "../stores/site"
-
-export let data: Record<string, any> = {}
-export let assetUrl: string = ""
-export let contacts: ContactLink[] = []
-
-$homePage = {
-  intro: { title: data.index_intro.Title, paragraph: data.index_intro.Paragraph },
-  joinButtonText: data.join_member_button_text,
-  eventsButtonText: data.see_events_nutton_text,
-  logo: `${assetUrl}${data.logo.url}`,
-  background: `${assetUrl}${data.index_background.url}`,
-}
-
-$eventsPage = {
-  intro: { title: data.events_intro.Title, paragraph: data.events_intro.Paragraph },
-  emptyFallback: {
-    title: data.no_events_found_text.Title,
-    paragraph: data.no_events_found_text.Paragraph,
-  },
-}
-
-$aboutUsPage = {
-  intro: { title: data.about_intro.Title, paragraph: data.about_intro.Paragraph },
-  boardMembers: data.board_members.map((x) => ({
-    name: x.Name,
-    role: x.Role.Description,
-    picture: x.Picture ? `${assetUrl}${x.Picture?.url}` : undefined,
-  })),
-}
-
-$memberPage = {
-  intro: {
-    title: data.membership_intro.Title,
-    paragraph: data.membership_intro.Paragraph,
-  },
-}
-
-$contactLinks = contacts.map((x) => ({ text: x.Text, href: x.Href }))
+import Header from "$components/layout/header.svelte"
+import PageTransition from "$components/layout/page-transition.svelte"
 </script>
-
-<svelte:head>
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
-    rel="stylesheet"
-  />
-</svelte:head>
 
 <div class="app">
   <Header />
@@ -90,12 +27,10 @@ $contactLinks = contacts.map((x) => ({ text: x.Text, href: x.Href }))
     <PageTransition refresh={$page.path}>
       <slot />
     </PageTransition>
-    {#if $page.path == "/"}
-      <div
-        class="bg"
-        in:fade={{ duration: 1000 }}
-        style={`background-image: url("${$homePage.background}")`}
-      />
+    {#if $page.path === "/"}
+      <div class="bg" style={`background-image: url("${$data.background}")`} />
+    {:else}
+      <div class="bg" style={`background-color: black`} />
     {/if}
   </main>
 </div>
@@ -107,42 +42,43 @@ $contactLinks = contacts.map((x) => ({ text: x.Text, href: x.Href }))
   @apply font-sans text-base lg:text-xl border-none;
 }
 
-html {
-  margin-left: calc(100vw - 100%); }
-}
-
-main {
-  min-height: 600px;
-  @apply bg-black;
-  @apply w-full py-4 md:py-16;
-}
-
-body {
-  @apply flex flex-col m-0 p-0 border-none bg-black;
-}
-
-img {
-  @apply m-0 p-0 border-none;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
 :global(*::-webkit-scrollbar) {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 * {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+svg,
+img {
+    @apply m-0 p-0 border-none;
+}
+
+html {
+  margin-left: calc(100vw - 100%); }
+}
+
+body {
+  @apply flex flex-col;
+  margin:0!important;
+  padding:0!important;
+  min-height: 100vh;
+}
+
+main {
+  @apply w-full py-4 md:py-16 bg-transparent;
 }
 
 .app {
   max-width: 100vw;
   font-family: 'DM Sans';
   min-height: 100vh;
-  @apply relative w-full overflow-hidden bg-black;
+  @apply relative w-full overflow-hidden;
   @apply bg-transparent;
 }
+
 .bg {
   z-index: -1;
   background-size: cover;
@@ -150,6 +86,7 @@ img {
   min-height: 100vh;
   @apply absolute top-0 w-full h-full;
 }
+
 .bg::before {
   content: "";
   position: absolute;

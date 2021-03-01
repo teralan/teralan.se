@@ -1,6 +1,6 @@
 <script>
 import { fade } from "svelte/transition"
-import { homePage } from "../stores/site"
+import { home } from "$stores/site"
 import Page from "$components/layout/page.svelte"
 import Divider from "$components/layout/divider.svelte"
 import Button from "$components/button.svelte"
@@ -13,25 +13,25 @@ import Logo from "$components/logo.svelte"
 
 <Page intro={false}>
   <span class="mx-auto w-24 md:w-32" in:fade={{ duration: 1000 }}>
-    <Logo image={$homePage.logo} />
+    <Logo image={$home.logo} />
   </span>
   <Divider />
   <div class="landing_leading" in:fade={{ duration: 1000 }}>
-    <h1>{$homePage.intro.title}</h1>
+    <h1>{$home.intro.title}</h1>
     <p>
-      {$homePage.intro.paragraph}
+      {$home.intro.paragraph}
     </p>
     <div class="buttons">
       <a href="/member" class="mb-4 mr-4">
         <Button color="blue">
           <span>💳</span>
-          <span class="pl-2 pr-4">{$homePage.joinButtonText}</span>
+          <span class="pl-2 pr-4">{$home.joinButtonText}</span>
         </Button>
       </a>
       <a href="/events">
         <Button color="orange">
           <span>📅</span>
-          <span class="pl-2 pr-4">{$homePage.eventsButtonText}</span>
+          <span class="pl-2 pr-4">{$home.eventsButtonText}</span>
         </Button>
       </a>
     </div>

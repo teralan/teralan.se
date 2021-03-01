@@ -2,7 +2,7 @@
 import { fade, slide } from "svelte/transition"
 import Button from "$components/button.svelte"
 import NavPopup from "$components/nav-popup.svelte"
-import { contactLinks } from "../../stores/site"
+import { contacts } from "$stores/site"
 import { page } from "$app/stores"
 import { onMount } from "svelte"
 
@@ -62,10 +62,9 @@ const paths = [
               e.preventDefault()
               e.stopPropagation()
               showContactPopup = !showContactPopup
-            }}>kontakt</span
-          >
+            }}>kontakt</span>
           <div bind:this={contactPopupRoot}>
-            <NavPopup items={$contactLinks} visible={showContactPopup}>
+            <NavPopup items={$contacts} visible={showContactPopup}>
               <span class="text-2xl font-bold tracking-wider capitalize">
                 Frågor? <br /><span class="text-lg">Kontakta oss!</span>
               </span>
@@ -84,11 +83,9 @@ const paths = [
     <div class="mobile">
       <span
         on:click={handleMobileIconClick}
-        class={`icon ${showMobileMenu ? "opened" : ""}`}
-      >
+        class={`icon ${showMobileMenu ? "opened" : ""}`}>
         <span class={showMobileMenu ? "text-lg" : "text-2xl"}
-          >{showMobileMenu ? "❌" : "•••"}</span
-        >
+          >{showMobileMenu ? "❌" : "•••"}</span>
       </span>
       {#if showMobileMenu}
         <div class="modal" in:slide={{ duration: 1000 }}>
@@ -105,9 +102,9 @@ const paths = [
           </ul>
           <div class="contact mt-4" in:fade={{ delay: 100, duration: 1000 }}>
             <ul>
-              {#each $contactLinks as item}
+              {#each $contacts as contact}
                 <li>
-                  <a target="_blank" href={item.href}>{item.text}</a>
+                  <a target="_blank" href={contact.href}>{contact.text}</a>
                 </li>
               {/each}
             </ul>

@@ -3,6 +3,14 @@ declare type SimpleContent = {
   paragraph: string
 }
 
+declare type SiteContent = {
+  homePage: HomePage
+  eventsPage: EventsPage
+  aboutUsPage: AboutUsPage
+  memberPage: MemberPage
+  contactLinks: ContactLink[]
+}
+
 declare type HomePage = {
   intro: SimpleContent
   joinButtonText: string
@@ -21,7 +29,7 @@ declare type AboutUsPage = {
   boardMembers: BoardMember[]
 }
 
-declare type memberPage = {
+declare type MemberPage = {
   intro: SimpleContent
 }
 

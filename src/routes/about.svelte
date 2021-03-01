@@ -1,9 +1,9 @@
 <script>
 import { fly } from "svelte/transition"
+import { aboutus } from "$stores/site"
 import Background from "$components/background.svelte"
 import PersonCard from "$components/person-card.svelte"
 import Page from "$components/layout/page.svelte"
-import { aboutUsPage } from "../stores/site"
 
 const formatMembers = (members: BoardMember[]) => {
   const result: BoardMember[] = []
@@ -19,28 +19,25 @@ const formatMembers = (members: BoardMember[]) => {
 </script>
 
 <svelte:head>
-  <title>{`${$aboutUsPage.intro.title} - 🧑🏻‍🤝‍🧑🏽`}</title>
+  <title>{`${$aboutus.intro.title} - 🧑🏻‍🤝‍🧑🏽`}</title>
 </svelte:head>
 
 <Page
-  title={$aboutUsPage.intro.title}
-  description={$aboutUsPage.intro.paragraph}
-  divider={"👈(ﾟヮﾟ👈)"}
->
+  title={$aboutus.intro.title}
+  description={$aboutus.intro.paragraph}
+  divider={"👈(ﾟヮﾟ👈)"}>
   <div class="cards">
-    {#each formatMembers($aboutUsPage.boardMembers) as item, i}
+    {#each formatMembers($aboutus.boardMembers) as item, i}
       <div
         class="column space-y-2 md:space-y-4"
-        in:fly={{ delay: i * 250, duration: 1000, y: 200 }}
-      >
+        in:fly={{ delay: i * 250, duration: 1000, y: 200 }}>
         {#each item as it}
           <PersonCard
             data={{
               title: it?.name,
               description: it?.role,
               image: it?.picture,
-            }}
-          />
+            }} />
         {/each}
       </div>
     {/each}
