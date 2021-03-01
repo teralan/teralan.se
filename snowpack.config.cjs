@@ -9,5 +9,6 @@ module.exports = {
   alias: {
     $app: "./.svelte/assets/runtime/app",
     $components: "./src/components",
+    $stores: "./src/stores",
   },
 }

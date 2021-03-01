@@ -11,12 +11,13 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["svelte"],
+    "types": ["svelte", "node"],
     "lib": ["dom", "esnext"],
     "baseUrl": ".",
     "paths": {
       "$app/*": ["./.svelte/assets/runtime/app/*"],
-      "$components/*": ["./src/components/*"]
+      "$components/*": ["./src/components/*"],
+      "$stores/*": ["./src/stores/*"]
     }
   }
 }
