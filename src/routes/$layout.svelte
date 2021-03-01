@@ -5,7 +5,7 @@ export const load: RouteLoad = async ({ fetch, session }) => {
   const apiUrl = "http://localhost:1337"
 
   //@todo move to .env config
-  const assetUrl = dev ? "http://localhost:1337" : "/media"
+  const assetUrl = "http://localhost:1337"
 
   const res = await fetch(`${apiUrl}/teralan-se`)
   const data = await res.json()
@@ -139,6 +139,7 @@ img {
 .app {
   max-width: 100vw;
   font-family: 'DM Sans';
+  min-height: 100vh;
   @apply relative w-full overflow-hidden bg-black;
   @apply bg-transparent;
 }
@@ -146,6 +147,7 @@ img {
   z-index: -1;
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
   @apply absolute top-0 w-full h-full;
 }
 .bg::before {
