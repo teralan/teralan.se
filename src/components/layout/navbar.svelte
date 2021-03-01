@@ -1,14 +1,10 @@
 <script>
 import { fade, slide } from "svelte/transition"
-import Button from "@components/button.svelte"
-import NavPopup from "@components/nav-popup.svelte"
+import Button from "$components/button.svelte"
+import NavPopup from "$components/nav-popup.svelte"
+import { contactLinks } from "../../stores/site"
+import { page } from "$app/stores"
 import { onMount } from "svelte"
-
-const contactLinks = [
-  { text: "👍 • facebook/teralanpage", href: "https://www.facebook.com/teralanpage" },
-  { text: "📞 • +46 760 18 11 77", href: "tel:+46760181177" },
-  { text: "📪 • hej@teralan.se", href: "mailto:hej@teralan.se" },
-]
 
 let showMobileNav = false
 let showMobileMenu = false
@@ -41,6 +37,11 @@ function onWindowClick(e: MouseEvent) {
     showContactPopup = contactPopupRoot!.contains(e.target as HTMLElement)
   }
 }
+
+const paths = [
+  { href: "/about", label: "om oss" },
+  { href: "/events", label: "events" },
+]
 </script>
 
 <svelte:window on:click={onWindowClick} />
@@ -49,12 +50,11 @@ function onWindowClick(e: MouseEvent) {
   {#if !showMobileNav}
     <div class="desktop" in:fade={{ duration: 1000 }}>
       <ul class="list">
-        <li>
-          <a href="/about">om oss</a>
-        </li>
-        <li>
-          <a href="/events">events</a>
-        </li>
+        {#each paths as { href, label }}
+          <li class={href === $page.path ? "selected" : ""}>
+            <a {href}>{label}</a>
+          </li>
+        {/each}
         <li class="relative">
           <span
             class="cursor-pointer"
@@ -65,7 +65,7 @@ function onWindowClick(e: MouseEvent) {
             }}>kontakt</span
           >
           <div bind:this={contactPopupRoot}>
-            <NavPopup items={contactLinks} visible={showContactPopup}>
+            <NavPopup items={$contactLinks} visible={showContactPopup}>
               <span class="text-2xl font-bold tracking-wider capitalize">
                 Frågor? <br /><span class="text-lg">Kontakta oss!</span>
               </span>
@@ -73,7 +73,7 @@ function onWindowClick(e: MouseEvent) {
           </div>
         </li>
       </ul>
-      <a href="/membership" class="ml-auto text-xl text-white rounded-none">
+      <a href="/member" class="ml-auto text-xl text-white rounded-none">
         <Button color="blue">
           <span>💳</span>
           <span class="pl-2 pr-4"> Bli medlem </span>
@@ -82,7 +82,10 @@ function onWindowClick(e: MouseEvent) {
     </div>
   {:else if showMobileNav}
     <div class="mobile">
-      <span on:click={handleMobileIconClick} class="icon">
+      <span
+        on:click={handleMobileIconClick}
+        class={`icon ${showMobileMenu ? "opened" : ""}`}
+      >
         {showMobileMenu ? "❌" : "🍔"}
       </span>
       {#if showMobileMenu}
@@ -95,12 +98,12 @@ function onWindowClick(e: MouseEvent) {
               <a on:click={handleMobileIconClick} href="/events">Events</a>
             </li>
             <li>
-              <a on:click={handleMobileIconClick} href="/membership">Bli medlem</a>
+              <a on:click={handleMobileIconClick} href="/member">Bli medlem</a>
             </li>
           </ul>
           <div class="contact mt-4" in:fade={{ delay: 100, duration: 1000 }}>
             <ul>
-              {#each contactLinks as item}
+              {#each $contactLinks as item}
                 <li>
                   <a target="_blank" href={item.href}>{item.text}</a>
                 </li>
@@ -122,6 +125,12 @@ nav {
 .desktop {
   @apply flex w-full px-10 py-10 max-w-7xl;
   @apply hidden md:flex;
+}
+
+li.selected {
+  box-sizing: "content-box";
+  @apply border-b-5 border-blue-700
+         duration-1000 transition-all;
 }
 
 .desktop ul.list {
@@ -148,6 +157,10 @@ nav {
   @apply absolute p-2 right-0 top-0;
 }
 
+.mobile .icon.opened {
+  @apply border-none bg-transparent shadow-none;
+}
+
 .mobile .modal {
   @apply p-4 bg-white border-blue-600 rounded-3xl shadow-lg border-gray-200 border;
 }
@@ -158,8 +171,9 @@ nav {
 }
 
 .mobile .contact ul {
-  @apply flex flex-col space-y-2 text-base font-normal lowercase bg-blue-300 p-4 rounded-2xl;
-  @apply text-blue-900;
+  @apply flex flex-col space-y-2 text-base font-normal
+        lowercase bg-blue-700 border-blue-500 border p-4 rounded-2xl;
+  @apply text-blue-200;
 }
 .mobile .contact ul li {
   @apply transition-colors duration-150;

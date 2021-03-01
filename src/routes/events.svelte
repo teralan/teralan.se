@@ -1,19 +1,18 @@
 <script>
-import { fade } from "svelte/transition"
-import Background from "@components/background.svelte"
-import Page from "@components/layout/page.svelte"
-
-const description = `Bli medlem i vår förening och få tillgång till flera
-    förmåner som billigare biljettpriser och exklusiva event.`
+import Background from "$components/background.svelte"
+import Page from "$components/layout/page.svelte"
+import { eventsPage } from "../stores/site"
 </script>
 
-<Background />
+<svelte:head>
+  <title>{`${$eventsPage.intro.title} - 🚩`}</title>
+</svelte:head>
 
-<Page title="Events" {description}>
+<Page title={$eventsPage.intro.title} description={$eventsPage.intro.paragraph}>
   <div class="events">
-    <span class="empty" in:fade={{ duration: 2000 }}>
-      <span class="title"> Inga kommande event atm! </span>
-      <p>Men håll utskick på sociala medier om uppdateringar!</p>
+    <span class="empty">
+      <span class="title">{$eventsPage.emptyFallback.title}</span>
+      <p>{$eventsPage.emptyFallback.paragraph}</p>
     </span>
   </div>
 </Page>
@@ -21,7 +20,7 @@ const description = `Bli medlem i vår förening och få tillgång till flera
 <style>
 .events {
   max-width: 924px;
-  @apply container mx-auto mt-12 w-full p-12;
+  @apply max-w-3xl mx-auto mt-12 w-full p-6 md:p-12;
   @apply bg-white rounded-xl shadow-lg;
 }
 .events .empty {
@@ -30,7 +29,7 @@ const description = `Bli medlem i vår förening och få tillgång till flera
   @apply text-black text-center;
 }
 .events .empty .title {
-  @apply text-xl md:text-3xl my-4;
+  @apply text-xl md:text-3xl mb-4;
   @apply font-bold;
 }
 .events .empty p {

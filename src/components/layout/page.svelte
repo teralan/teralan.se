@@ -1,6 +1,6 @@
 <script>
 import { fade } from "svelte/transition"
-import Divider from "@components/layout/divider.svelte"
+import Divider from "$components/layout/divider.svelte"
 
 export let title: string = "Title"
 export let description: string = "Description"
@@ -9,13 +9,12 @@ export let intro: boolean = true
 </script>
 
 <svelte:head>
-  <title>{`${title}`}</title>
   <meta name="description" content={description} />
 </svelte:head>
 
 <div class="page">
   {#if intro}
-    <div in:fade={{ duration: 1000 }} class="intro">
+    <div class="intro">
       <h1>{title}</h1>
       <Divider text={divider} />
       <p>
@@ -29,7 +28,7 @@ export let intro: boolean = true
 <style scoped>
 .page {
   @apply flex flex-col items-center justify-center;
-  @apply mt-16 md:mt-24 px-8 mx-auto w-full;
+  @apply mt-8 md:mt-32 px-4 mx-auto w-full;
   @apply text-white;
 }
 .page .intro {
@@ -37,12 +36,12 @@ export let intro: boolean = true
   @apply text-center w-full;
 }
 .page .intro h1 {
-  @apply text-4xl md:text-6xl;
+  @apply text-3xl md:text-5xl;
   @apply font-bold;
 }
 .page .intro p {
   @apply max-w-lg;
-  @apply text-lg md:text-xl;
+  @apply text-base md:text-lg;
   @apply text-gray-400;
 }
 </style>

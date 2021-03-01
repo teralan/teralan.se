@@ -1,10 +1,7 @@
 <script>
 import { fly } from "svelte/transition"
 export let visible = false
-export let items: {
-  text: string
-  href: string
-}[] = []
+export let items: ContactLink[] = []
 </script>
 
 {#if visible}

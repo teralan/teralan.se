@@ -1,27 +1,56 @@
 // <reference types="@sveltejs/kit" />
 
-//#region Ensure Svelte file endings have a type for TypeScript
-/**
- * These declarations tell TypeScript that we allow import of Svelte files in TS files, e.g.
- * ```
-		import Component from './Component.svelte';
-	 ```
- */
+declare type RouteLoad = (params: {
+  fetch: (input: RequestInfo, init?: RequestInit) => Promise<Response>
+  session: Record<string, any>
+  page: {
+    host: string
+    path: string
+    params?: Record<string, string>
+    query: URLSearchParams
+  }
+  context: Record<string, any>
+}) => Promise<{
+  status?: number
+  /**
+   * use new Error() to generate this
+   */
+  error?: Error
+  /**
+   * only implemented for SSR for now, not client-side
+   */
+  redirect?: {
+    to: string
+    status: number
+  }
+  context?: Record<string, any>
+  /**
+   * seconds before cleared from cache
+   */
+  maxage?: number
+  props?: Record<string, any>
+} | void>
+
+declare type ServerRoute = (
+  req: {
+    host: string
+    path: string
+    headers: Record<string, string>
+    query: URLSearchParams
+    body: undefined | Record<string, any>
+    params: Record<string, unknown>
+  },
+  context?: Record<string, any>,
+) => Promise<{
+  status?: number
+  headers?: Record<string, string>
+  body?: Record<string, any> | Buffer | DataView
+}>
+
 declare module "*.svelte" {
   export { SvelteComponent as default } from "svelte"
 }
-//#endregion
 
-//#region Ensure image file endings have a type for TypeScript
-/**
-     * These declarations tell TypeScript that we allow import of images, e.g.
-     * ```
-            <script lang='ts'>
-                import successkid from 'images/successkid.jpg';
-            </script>
-            <img src="{successkid}">
-         ```
-     */
 declare module "*.gif" {
   const value: string
   export = value
@@ -51,4 +80,3 @@ declare module "*.webp" {
   const value: string
   export = value
 }
-//#endregion

@@ -1,38 +1,37 @@
 <script>
 import { fade } from "svelte/transition"
-import Page from "@components/layout/page.svelte"
-import Divider from "@components/layout/divider.svelte"
-import Button from "@components/button.svelte"
-import Logo from "@components/logo.svelte"
+import { homePage } from "../stores/site"
+import Page from "$components/layout/page.svelte"
+import Divider from "$components/layout/divider.svelte"
+import Button from "$components/button.svelte"
+import Logo from "$components/logo.svelte"
 </script>
 
 <svelte:head>
-  <title>Teralan - LAN Events</title>
+  <title>Teralan - LAN 🕹 Turneringar</title>
 </svelte:head>
 
-<div class="bg" />
 <Page intro={false}>
-  <span class="mx-auto w-24 m:w-64 md:mt-8" in:fade={{ duration: 1000 }}>
-    <Logo image={"./assets/img/logo.webp"} />
+  <span class="mx-auto w-32 m:w-64" in:fade={{ duration: 1000 }}>
+    <Logo image={$homePage.logo} />
   </span>
   <Divider />
   <div class="landing_leading" in:fade={{ duration: 1000 }}>
-    <h1>Brinner du för LAN <br /> lika mycket som oss?</h1>
+    <h1>{$homePage.intro.title}</h1>
     <p>
-      Bli medlem i vår förening och få tillgång till flera förmåner som billigare
-      biljettpriser och exklusiva event.
+      {$homePage.intro.paragraph}
     </p>
     <div class="buttons">
-      <a href="/membership" class="mb-4 mr-4">
+      <a href="/member" class="mb-4 mr-4">
         <Button color="blue">
           <span>💳</span>
-          <span class="pl-2 pr-4"> Bli medlem </span>
+          <span class="pl-2 pr-4">{$homePage.joinButtonText}</span>
         </Button>
       </a>
       <a href="/events">
         <Button color="orange">
           <span>📅</span>
-          <span class="pl-2 pr-4"> Kommande event </span>
+          <span class="pl-2 pr-4">{$homePage.eventsButtonText}</span>
         </Button>
       </a>
     </div>
@@ -45,7 +44,7 @@ import Logo from "@components/logo.svelte"
   @apply text-left;
 }
 .landing_leading h1 {
-  @apply text-2xl md:text-6xl;
+  @apply text-2xl md:text-5xl max-w-xl;
   @apply font-bold;
 }
 .landing_leading p {
@@ -60,7 +59,6 @@ import Logo from "@components/logo.svelte"
 }
 .bg {
   z-index: -1;
-  background-image: url("assets/img/bg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   @apply absolute top-0 w-full h-full;

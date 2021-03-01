@@ -4,7 +4,6 @@ export let image: string = ""
 
 <span class="mx-auto logo">
   <img src={image} alt="logo" height="auto" />
-  <span>teralan</span>
 </span>
 
 <style scoped>
