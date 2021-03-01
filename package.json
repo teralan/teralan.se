@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "type": "module",
   "license": "UNLICENSED",
+  "engines": {
+    "node": ">=14.16.0"
+  },
   "scripts": {
     "dev": "not-svelte-kit dev",
     "build": "not-svelte-kit build && not-svelte-kit adapt",

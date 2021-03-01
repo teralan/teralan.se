@@ -1234,9 +1234,9 @@ which@^2.0.1:
     isexe "^2.0.0"
 
 windicss@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.2.1.tgz#fd89e0440cf50254b55a50d0864a31c3e18868ca"
-  integrity sha512-eMwRN0YQZ2ipL9IsS6YgA2D564BiyHr5c6jDbND6ZwmMl1DmhLDfC5cr5Tbfp7vUceUxFonLM/1tx8pyPdLEZQ==
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.2.2.tgz#ca1f8907fb086ff5fd63f21b9a4a10b543027397"
+  integrity sha512-+yOlyx+j3/MJaoqhZb6BjjXnGMJcIdjaKs8cIYXkCr5t/wJLFBS35uDrqxo31IaSHOo/gtw+fcMyw8D+3oq6qg==
 
 wrappy@1:
   version "1.0.2"
