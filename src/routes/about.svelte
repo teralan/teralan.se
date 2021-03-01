@@ -22,7 +22,11 @@ const formatMembers = (members: BoardMember[]) => {
   <title>{`${$aboutUsPage.intro.title} - 🧑🏻‍🤝‍🧑🏽`}</title>
 </svelte:head>
 
-<Page title={$aboutUsPage.intro.title} description={$aboutUsPage.intro.paragraph}>
+<Page
+  title={$aboutUsPage.intro.title}
+  description={$aboutUsPage.intro.paragraph}
+  divider={"👈(ﾟヮﾟ👈)"}
+>
   <div class="cards">
     {#each formatMembers($aboutUsPage.boardMembers) as item, i}
       <div

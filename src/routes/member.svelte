@@ -9,7 +9,7 @@ import { memberPage } from "../stores/site"
   <title>{`${$memberPage.intro.title} - 📋`}</title>
 </svelte:head>
 
-<Page title={$memberPage.intro.title} description="">
+<Page title={$memberPage.intro.title} description="" divider="(＾Ｕ＾)ノ">
   <span class="text-2xl text-gray-300 text-center">
     {$memberPage.intro.paragraph}
   </span>

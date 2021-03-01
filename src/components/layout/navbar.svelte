@@ -86,7 +86,9 @@ const paths = [
         on:click={handleMobileIconClick}
         class={`icon ${showMobileMenu ? "opened" : ""}`}
       >
-        {showMobileMenu ? "❌" : "🍔"}
+        <span class={showMobileMenu ? "text-lg" : "text-2xl"}
+          >{showMobileMenu ? "❌" : "•••"}</span
+        >
       </span>
       {#if showMobileMenu}
         <div class="modal" in:slide={{ duration: 1000 }}>
@@ -152,8 +154,9 @@ li.selected {
 
 .mobile .icon {
   z-index: 99;
+  @apply transition-all duration-300;
   @apply w-12 h-12 flex items-center justify-center rounded-full;
-  @apply bg-white border-gray-200 shadow border text-white;
+  @apply bg-white border-gray-200 shadow border text-black;
   @apply absolute p-2 right-0 top-0;
 }
 

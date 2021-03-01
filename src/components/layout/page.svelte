@@ -4,7 +4,7 @@ import Divider from "$components/layout/divider.svelte"
 
 export let title: string = "Title"
 export let description: string = "Description"
-export let divider: string = "* * *"
+export let divider: string = undefined
 export let intro: boolean = true
 </script>
 
@@ -28,19 +28,19 @@ export let intro: boolean = true
 <style scoped>
 .page {
   @apply flex flex-col items-center justify-center;
-  @apply mt-8 md:mt-32 px-4 mx-auto w-full;
+  @apply mt-8 md:mt-32 px-4 mx-auto;
   @apply text-white;
 }
 .page .intro {
   @apply flex flex-col items-center justify-center;
-  @apply text-center w-full;
+  @apply text-center;
 }
 .page .intro h1 {
   @apply text-3xl md:text-5xl;
   @apply font-bold;
 }
 .page .intro p {
-  @apply max-w-lg;
+  @apply max-w-xl;
   @apply text-base md:text-lg;
   @apply text-gray-400;
 }

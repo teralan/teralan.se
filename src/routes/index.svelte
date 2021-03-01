@@ -12,7 +12,7 @@ import Logo from "$components/logo.svelte"
 </svelte:head>
 
 <Page intro={false}>
-  <span class="mx-auto w-32 m:w-64" in:fade={{ duration: 1000 }}>
+  <span class="mx-auto w-24 md:w-32" in:fade={{ duration: 1000 }}>
     <Logo image={$homePage.logo} />
   </span>
   <Divider />

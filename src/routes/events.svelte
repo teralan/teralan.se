@@ -8,7 +8,11 @@ import { eventsPage } from "../stores/site"
   <title>{`${$eventsPage.intro.title} - 🚩`}</title>
 </svelte:head>
 
-<Page title={$eventsPage.intro.title} description={$eventsPage.intro.paragraph}>
+<Page
+  title={$eventsPage.intro.title}
+  description={$eventsPage.intro.paragraph}
+  divider={"ლ(╹◡╹ლ)"}
+>
   <div class="events">
     <span class="empty">
       <span class="title">{$eventsPage.emptyFallback.title}</span>
@@ -20,7 +24,7 @@ import { eventsPage } from "../stores/site"
 <style>
 .events {
   max-width: 924px;
-  @apply max-w-3xl mx-auto mt-12 w-full p-6 md:p-12;
+  @apply max-w-3xl mx-auto mt-12 p-6 md:p-12;
   @apply bg-white rounded-xl shadow-lg;
 }
 .events .empty {

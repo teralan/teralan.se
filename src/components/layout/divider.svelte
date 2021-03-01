@@ -1,5 +1,5 @@
 <script>
-export let text: string = "* * *"
+export let text: string = "• • •"
 </script>
 
 <span class="divider">{text}</span>
