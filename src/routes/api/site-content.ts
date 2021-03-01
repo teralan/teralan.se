@@ -1,7 +1,7 @@
 import fetch from "node-fetch"
 
 export const get: ServerRoute<SiteContent> = async (req) => {
-  const url = process.env.API_URL
+  const url = process.env.API_URL ?? "http://localhost:1337"
   const content = await fetchSiteContent(url)
   return {
     status: 200,
@@ -37,7 +37,7 @@ async function fetchSiteContent(apiUrl: string): Promise<SiteContent> {
       boardMembers: data.board_members.map((x: Record<string, any>) => ({
         name: x.Name,
         role: x.Role.Description,
-        picture: x.Picture ? `${baseUrl}${x.Picture?.url}` : undefined,
+        picture: x.Picture ? `${apiUrl}${x.Picture?.url}` : undefined,
       })),
     },
     memberPage: {
