@@ -7,12 +7,10 @@
     "node": ">=14.16.0"
   },
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build && svelte-kit adapt",
-    "start": "svelte-kit start",
-    "dev:win": "not-svelte-kit dev",
-    "build:win": "not-svelte-kit build && not-svelte-kit adapt",
-    "start:win": "not-svelte-kit start"
+    "dev": "not-svelte-kit dev",
+    "build": "not-svelte-kit build && not-svelte-kit adapt",
+    "start": "not-svelte-kit start",
+    "deploy": "svelte-kit build && svelte-kit adapt"
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
