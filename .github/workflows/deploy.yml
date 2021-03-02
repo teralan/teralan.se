@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: 🌲 set environment for branch
+        run: |
+          if [[ $GITHUB_REF == 'refs/heads/master' ]]; then
+              echo "VERCEL_ARGS=--prod" >> "$GITHUB_ENV"
+          fi
       - name: 🎪 setup node
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
       - name: 👷 install dependencies
         run: npm i
-      - name: 👑 determine if production
-        if: "contains(${{ github.ref }}, 'master')"
-        run: |
-          echo 'VERCEL_RUN_ARGS=--prod' >> $GITHUB_ENV
-        
       - name: 🚀 deploy to vercel
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-args: ${{ env.VERCEL_RUN_ARGS }}
+          vercel-args: ${{ env.VERCEL_ARGS }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
