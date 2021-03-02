@@ -12,7 +12,6 @@ export const load = async ({ fetch }) => {
 </script>
 
 <script>
-import { fade } from "svelte/transition"
 import { page } from "$app/stores"
 import { home as data } from "$stores/site"
 

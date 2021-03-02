@@ -1,4 +1,5 @@
 import fetch from "node-fetch"
+import { dev } from "$app/env"
 
 export const get: ServerRoute<SiteContent> = async (req) => {
   const url = process.env.API_URL ?? "http://localhost:1337"
@@ -17,13 +18,16 @@ async function fetchSiteContent(apiUrl: string): Promise<SiteContent> {
   const rawContacts = await fetch(`${apiUrl}/socials`)
   const contacts = (await rawContacts.json()).Contacts
 
+  const getImgUrl = (url: string) =>
+    url === undefined ? "" : dev ? `${apiUrl}${url}` : url
+
   return {
     homePage: {
       intro: { title: data.index_intro.Title, paragraph: data.index_intro.Paragraph },
       joinButtonText: data.join_member_button_text,
       eventsButtonText: data.see_events_nutton_text,
-      logo: `${apiUrl}${data.logo.url}`,
-      background: `${apiUrl}${data.index_background.url}`,
+      logo: getImgUrl(data.logo.url),
+      background: getImgUrl(data.index_background.url),
     },
     eventsPage: {
       intro: { title: data.events_intro.Title, paragraph: data.events_intro.Paragraph },
@@ -37,7 +41,7 @@ async function fetchSiteContent(apiUrl: string): Promise<SiteContent> {
       boardMembers: data.board_members.map((x: Record<string, any>) => ({
         name: x.Name,
         role: x.Role.Description,
-        picture: x.Picture ? `${apiUrl}${x.Picture?.url}` : undefined,
+        picture: getImgUrl(x.Picture?.url),
       })),
     },
     memberPage: {
