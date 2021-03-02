@@ -21,3 +21,5 @@ node_modules
 .env
 !.env.example
 .npmrc
+
+.vercel

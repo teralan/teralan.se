@@ -4,13 +4,13 @@
   "type": "module",
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=14.x"
+    "node": ">= 14.0.0"
   },
   "scripts": {
     "dev": "not-svelte-kit dev",
     "build": "not-svelte-kit build && not-svelte-kit adapt",
     "start": "not-svelte-kit start",
-    "deploy": "yarn svelte-kit build && yarn svelte-kit adapt"
+    "deploy": "svelte-kit build && svelte-kit adapt"
   },
   "dependencies": {
     "node-fetch": "^2.6.1"

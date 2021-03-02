@@ -8,7 +8,6 @@ export const load = async ({ fetch }) => {
   aboutus.set(content.aboutUsPage)
   member.set(content.memberPage)
   contacts.set(content.contactLinks)
-  return {}
 }
 </script>
 
@@ -53,30 +52,32 @@ import PageTransition from "$components/layout/page-transition.svelte"
 
 svg,
 img {
-    @apply m-0 p-0 border-none;
+  @apply m-0 p-0 border-none;
 }
 
-html {
-  margin-left: calc(100vw - 100%); }
+:global(html) {
+  margin-left: calc(100vw - 100%);
 }
 
-body {
+:global(body) {
   @apply flex flex-col;
-  margin:0!important;
-  padding:0!important;
+  margin: 0 !important;
+  padding: 0 !important;
   min-height: 100vh;
 }
 
-main {
+:global(main) {
   @apply w-full py-4 md:py-16 bg-transparent;
 }
 
 .app {
   max-width: 100vw;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   min-height: 100vh;
   @apply relative w-full overflow-hidden;
   @apply bg-transparent;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .bg {
