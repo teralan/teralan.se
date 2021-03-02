@@ -1,0 +1,26 @@
+name: 🚀 deploy to vercel
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches: [ master ]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🎪 setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: 👷 install dependencies
+        run: npm i 
+      - name: 🚀 deploy to vercel
+        uses: actions/vercel-deployment@0.5.1
+        with:
+          vercelToken: ${{ secrets.VERCEL_TOKEN }}
+          vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
+          vercelProjectId: ${{ secrets.VERCEL_PROJECT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
