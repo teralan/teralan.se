@@ -1,30 +1,29 @@
 name: 🚀 deploy to vercel
 on:
   push:
-    branches: [ master, develop ]
+    branches: [master, develop]
   repository_dispatch:
+    types: [deploy-prod, deploy-dev]
   workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Print GitHub event action
-        run: |
-          echo "${{ github.event.action }}"
+
       - name: 🌲 set deployment env
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' || github.event.action == 'deploy-prod' }}
         run: |
           echo "VERCEL_ARGS=--prod" >> "$GITHUB_ENV"
-          
+
       - name: 🎪 setup node
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-          
+
       - name: 👷 install dependencies
         run: npm i
-        
+
       - name: 🚀 deploy to vercel
         uses: amondnet/vercel-action@v20
         with:
