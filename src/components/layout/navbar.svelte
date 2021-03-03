@@ -100,7 +100,7 @@ const paths = [
               <a on:click={handleMobileIconClick} href="/member">Bli medlem</a>
             </li>
           </ul>
-          <div class="contact mt-4" in:fade={{ delay: 100, duration: 1000 }}>
+          <div class="mt-4 contact" in:fade={{ delay: 100, duration: 1000 }}>
             <ul>
               {#each $contacts as contact}
                 <li>
@@ -128,6 +128,7 @@ nav {
 
 li.selected {
   box-sizing: "content-box";
+  border-style: solid;
   @apply border-b-5 border-blue-700
          duration-1000 transition-all;
 }

@@ -8,7 +8,7 @@ export let color: "blue" | "orange" = "blue"
 .btn {
   cursor: pointer;
   width: fit-content;
-
+  border-style: solid;
   @apply inline-flex items-center justify-center transition-all duration-150
            border font-semibold py-3 px-3 bg-opacity-100;
 }
