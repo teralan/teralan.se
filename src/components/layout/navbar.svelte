@@ -128,7 +128,7 @@ nav {
 
 li.selected {
   box-sizing: "content-box";
-  border-style: solid;
+  border-bottom-style: solid;
   @apply border-b-5 border-blue-700
          duration-1000 transition-all;
 }
