@@ -26,6 +26,7 @@ export let data: PersonCardData = {
   @apply text-center;
   @apply bg-blue-900 border-1 border-blue-500 rounded-lg shadow-lg;
   @apply transition-all duration-500 cursor-pointer;
+  border-style: solid;
 }
 .person_card:hover {
   z-index: 10;
@@ -35,6 +36,7 @@ export let data: PersonCardData = {
   width: -webkit-fill-available;
   max-width: 186px;
   height: auto;
+  aspect-ratio: 1 / 1;
   background: white;
   margin-bottom: 8px;
   @apply p-1 mb-2 md:p-2 md:mb-4;
