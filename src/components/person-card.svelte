@@ -22,23 +22,23 @@ export let data: PersonCardData = {
 <style>
 .person_card {
   @apply flex flex-col items-center justify-center;
-  @apply p-2 md:p-4 md:h-64 md:w-48;
+  @apply p-2 md:h-64 md:w-48;
   @apply text-center;
   @apply bg-blue-900 border-1 border-blue-500 rounded-lg shadow-lg;
   @apply transition-all duration-500 cursor-pointer;
   border-style: solid;
+  min-height: 170px;
 }
 .person_card:hover {
   z-index: 10;
   transform: scale(1.05);
 }
 .person_card .image_inner {
-  width: -webkit-fill-available;
-  max-width: 186px;
-  height: auto;
   aspect-ratio: 1 / 1;
   background: white;
+  height: auto;
   margin-bottom: 8px;
+  @apply h-16 w-16 md:h-32 md:w-32;
   @apply p-1 mb-2 md:p-2 md:mb-4;
   @apply rounded-full shadow-lg;
 }
