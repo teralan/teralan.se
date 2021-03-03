@@ -27,7 +27,8 @@ export let items: ContactLink[] = []
   top: 50px;
   position: absolute;
   width: 300px;
-  @apply shadow-lg border-blue-600 bg-blue-900
+  border-style: solid;
+  @apply shadow-lg border-blue-500 bg-blue-800
          border rounded-xl lowercase cursor-default;
 }
 ul {
