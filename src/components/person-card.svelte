@@ -9,9 +9,9 @@ export let data: PersonCardData = {
 
 <div class="person_card">
   {#if data.image}
-    <img class="image" src={data.image} />
+    <img class="image_inner" src={data.image} />
   {:else}
-    <span class="image">
+    <span class="image_inner">
       <PersonIcon />
     </span>
   {/if}
@@ -23,7 +23,6 @@ export let data: PersonCardData = {
 .person_card {
   @apply flex flex-col items-center;
   @apply p-2 md:p-4 md:h-64 md:w-48;
-
   @apply text-center;
   @apply bg-blue-900 border-1 border-blue-500 rounded-lg shadow-lg;
   @apply transition-all duration-500 cursor-pointer;
@@ -32,12 +31,14 @@ export let data: PersonCardData = {
   z-index: 10;
   transform: scale(1.05);
 }
-.person_card .image {
+.person_card .image_inner {
   width: -webkit-fill-available;
+  max-width: 186px;
+  height: auto;
   background: white;
-  margin-bottom: 20px;
-  padding: 24px;
-  border-radius: 50%;
+  margin-bottom: 8px;
+  @apply p-1 mb-2 md:p-2 md:mb-4;
+  @apply rounded-full shadow-lg;
 }
 .person_card .title {
   @apply text-white font-bold text-sm md:text-base break-words;

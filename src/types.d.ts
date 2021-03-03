@@ -34,7 +34,7 @@ declare type MemberPage = {
 }
 
 declare type PersonCardData = {
-  name: string
+  title: string
   role: string
   picture: string
 }
