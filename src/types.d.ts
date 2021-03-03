@@ -35,8 +35,8 @@ declare type MemberPage = {
 
 declare type PersonCardData = {
   title: string
-  role: string
-  picture: string
+  description: string
+  image: string
 }
 
 declare type BoardMember = PersonCardData
