@@ -19,6 +19,10 @@ import Header from "$components/layout/header.svelte"
 import PageTransition from "$components/layout/page-transition.svelte"
 </script>
 
+<svelte:head>
+  <script async src="https://cdn.splitbee.io/sb.js"></script>
+</svelte:head>
+
 <div class="app">
   <Header />
   <main>
