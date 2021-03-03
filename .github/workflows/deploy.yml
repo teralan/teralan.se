@@ -2,6 +2,9 @@ name: 🚀 deploy to vercel
 on:
   push:
     branches: [ master, develop ]
+  repository_dispatch:
+    types: 
+      - trigger-deploy
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
@@ -10,11 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: 🌲 set environment for branch
+      - name: 🌲 set deployment env
+        if: github.ref == "refs/heads/master" || github.event.action == "trigger-deploy"
         run: |
-          if [[ $GITHUB_REF == 'refs/heads/master' ]]; then
-              echo "VERCEL_ARGS=--prod" >> "$GITHUB_ENV"
-          fi
+          echo "VERCEL_ARGS=--prod" >> "$GITHUB_ENV"
           
       - name: 🎪 setup node
         uses: actions/setup-node@v1
