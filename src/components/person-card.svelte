@@ -21,7 +21,7 @@ export let data: PersonCardData = {
 
 <style>
 .person_card {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center justify-center;
   @apply p-2 md:p-4 md:h-64 md:w-48;
   @apply text-center;
   @apply bg-blue-900 border-1 border-blue-500 rounded-lg shadow-lg;
